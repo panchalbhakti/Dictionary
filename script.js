@@ -28,7 +28,6 @@ function data(result, word) {
   if (result.title) {
     infoPara.innerHTML = "Could not find the meaning of this word";
     contentBox.style.display = "none";
-    // console.log("na milo");
   } else {
     contentBox.style.display = "block";
     let definitions = result[0].meanings[0].definitions[0];
@@ -36,29 +35,5 @@ function data(result, word) {
     document.querySelector(".word-meaning span").innerHTML = result[0].phonetic;
     document.querySelector(".content .meaning").innerHTML =
       definitions.definition;
-
-    // Example
-    let exampleId = document.querySelector(".content #example");
-    let exampleClass = document.querySelector(".content .example");
-    if (definitions.example == undefined) {
-      exampleClass.style.display = "none";
-      exampleId.style.display = "none";
-    } else {
-      exampleClass.style.display = "block";
-      exampleId.style.display = "block";
-      exampleClass.innerHTML = definitions.example;
-    }
-
-    let synonyms = result[0].meanings[0].synonyms;
-    let synonymsTag = document.querySelector(".content .synonyms");
-    synonymsTag.innerHTML = "";
-    if (synonyms.length == 0) {
-      document.querySelector(".content #synonyms").style.display = "none";
-    } else {
-      document.querySelector(".content #synonyms").style.display = "block";
-      for (let i = 0; i < synonyms.length; i++) {
-        synonymsTag.innerHTML += `<span class="synonyms" onclick="fetchMeaning('${synonyms[i]}')">${synonyms[i]}  , </span> `;
-      }
-    }
   }
 }
